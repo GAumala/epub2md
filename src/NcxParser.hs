@@ -9,6 +9,8 @@ import qualified Data.Text as T
 import Data.List
 import Text.HTML.TagSoup
 
+import FileManager
+
 isInterestingTag :: Tag T.Text -> Bool
 isInterestingTag (TagOpen "navMap" _) = False
 isInterestingTag (TagClose "navMap") = False
@@ -28,7 +30,8 @@ parseTOCHtmlContent xhtmlString = filter isInterestingTag tagList
 
 getPageUrlFromAttrs :: [(T.Text,  T.Text)] -> T.Text
 getPageUrlFromAttrs [] = T.empty
-getPageUrlFromAttrs(("src", url):xs) = url
+getPageUrlFromAttrs(("src", url):xs) = urlWithMDExtension
+  where urlWithMDExtension = T.pack $ setMDExtension $ T.unpack url
 getPageUrlFromAttrs (x:xs) = getPageUrlFromAttrs xs
 
 spacesForLevel:: Int -> T.Text

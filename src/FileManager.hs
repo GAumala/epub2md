@@ -10,6 +10,7 @@ module FileManager
       getOutputMarkdownFilePath,
       readEpubFile,
       saveMarkdownFile,
+      setMDExtension
     ) where
 
 import qualified Data.Text as T
