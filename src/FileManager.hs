@@ -2,7 +2,9 @@
 
 module FileManager
     ( cleanup,
+      convertFile,
       findXhtmlFiles,
+      findTableOfContents,
       getRelativePath,
       getOutputDir,
       getOutputMarkdownFilePath,
@@ -17,6 +19,7 @@ import System.FilePath
 import System.Directory
 import Data.Maybe
 import System.FilePath.Find
+import Control.Monad
 
 maxRecursionLimit = 3
 
@@ -57,8 +60,28 @@ isXhtml :: FindClause Bool
 isXhtml = fmap hasXhtmlExtension extension
   where hasXhtmlExtension ext = ext == ".xhtml"
 
+isTableOfContents :: FindClause Bool
+isTableOfContents = fmap hasTOCName fileName
+  where hasTOCName name = name == "toc.ncx"
+
 findXhtmlFiles :: FilePath -> IO [FilePath]
 findXhtmlFiles = find honorMaxRecursionLimit isXhtml
+
+findTableOfContents :: FilePath -> IO (Maybe FilePath)
+findTableOfContents rootDir = do
+    searchResults <- find honorMaxRecursionLimit isTableOfContents rootDir
+    putStrLn "findTOC"
+    print $ head searchResults
+    if null searchResults then return Nothing
+    else return $ Just (head searchResults)
+
+convertFile:: (T.Text -> T.Text) -> FilePath ->  FilePath -> FilePath -> IO()
+convertFile converterFunc rootDir outputDir filePath = do
+  let relativePath = getRelativePath rootDir filePath
+  rawXhtml <- readEpubFile filePath
+  let markdownFilePath = getOutputMarkdownFilePath outputDir relativePath
+  let markdownOutput = converterFunc rawXhtml
+  saveMarkdownFile markdownFilePath markdownOutput
 
 cleanup :: FilePath ->  IO()
 cleanup = removeDirectoryRecursive

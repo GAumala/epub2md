@@ -18,6 +18,8 @@ This program unzips the `.epub` file, then goes through each `.xhtml` file and c
 
 Anything else is either completely ignored (such as images), or only the inner text makes it to the markdown file. However, these tags should be enough for most novels stuff like that. PR's are welcome. 
 
+Aditionally, a `toc.md` file is created, which contains a markdown list as a table of contents.
+
 ## Dependencies 
 
 [`unzip`](http://www.info-zip.org/UnZip.html) is required to extract the `.xhtml` files.  

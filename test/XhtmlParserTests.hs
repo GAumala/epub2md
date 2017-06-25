@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module LibTests (
+module XhtmlParserTests (
     parseBookHtmlContentTest,
     tagsToMarkdownTest
 ) where
@@ -9,7 +9,7 @@ import Test.HUnit
 import qualified Data.Text as T
 import Text.HTML.TagSoup
 
-import Lib
+import XhtmlParser
 
 parseBookHtmlContentTest = TestCase (
   assertEqual "Returns an array with the tags contained in the body"

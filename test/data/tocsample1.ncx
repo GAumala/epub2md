@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2006-1//EN"
+ "http://www.taisy.org/z4857/2006/ncx-2006-1.dtd">
+<ncx xmlns="http://www.taisy.org/z4857/2006/ncx/" version="2006-1">
+  <head>
+    <meta name="dtb:uid" content="urn:uuid:d3wds1b3-5877-476c-b1zd-i6a5a82b81e5" />
+    <meta name="dtb:depth" content="2" />
+    <meta name="dtb:totalPageCount" content="0" />
+    <meta name="dtb:maxPageNumber" content="0" />
+  </head>
+  <docTitle>
+    <text>Book Title</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint-1" playOrder="1">
+      <navLabel>
+        <text>Cubierta</text>
+      </navLabel>
+      <content src="Text/cubierta.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-2" playOrder="2">
+      <navLabel>
+        <text>Chapter 1</text>
+      </navLabel>
+      <content src="Text/Section001.xhtml" />
+      <navPoint id="navPoint-3" playOrder="3">
+        <navLabel>
+          <text>SubChapter 1</text>
+        </navLabel>
+        <content src="Text/Section002.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-4" playOrder="4">
+        <navLabel>
+          <text>SubChapter 2</text>
+        </navLabel>
+        <content src="Text/Section003.xhtml" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-5" playOrder="5">
+      <navLabel>
+        <text>Chapter 2</text>
+      </navLabel>
+      <content src="Text/Section004.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-6" playOrder="6">
+      <navLabel>
+        <text>Chapter 3</text>
+      </navLabel>
+      <content src="Text/Section005.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-7" playOrder="7">
+      <navLabel>
+        <text>Chapter 4</text>
+      </navLabel>
+      <content src="Text/Section006.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-8" playOrder="8">
+      <navLabel>
+        <text>Chapter 5</text>
+      </navLabel>
+      <content src="Text/Section007.xhtml" />
+    </navPoint>
+  </navMap>
+</ncx>

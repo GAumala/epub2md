@@ -15,9 +15,10 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib
-                     , FileManager
+  exposed-modules:     FileManager
+                     , NcxParser
                      , Unzip
+                     , XhtmlParser
   build-depends:       base >= 4.7 && < 5
                      , directory
                      , filemanip
@@ -38,9 +39,10 @@ executable epub2md
 test-suite epub2md-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
-  other-modules:       LibTests
-                     , DataTests
+  other-modules:       DataTests
                      , FileManagerTests
+                     , NcxParserTests
+                     , XhtmlParserTests
   main-is:             Spec.hs
   build-depends:       base
                      , HUnit

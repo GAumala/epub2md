@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Lib
+module XhtmlParser
     ( parseBookHtmlContent,
       tagsToMarkdown,
       xhtmlToMarkdown

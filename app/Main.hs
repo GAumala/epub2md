@@ -1,24 +1,25 @@
 module Main where
 
-import Lib
-import FileManager
-import Unzip
 import System.Environment
 import Control.Monad
+import Data.Maybe
 
-convertFile:: FilePath ->  FilePath -> FilePath -> IO()
-convertFile rootDir outputDir filePath = do
-  let relativePath = getRelativePath rootDir filePath
-  rawXhtml <- readEpubFile filePath
-  let markdownFilePath = getOutputMarkdownFilePath outputDir relativePath
-  let markdownOutput = xhtmlToMarkdown rawXhtml
-  saveMarkdownFile markdownFilePath markdownOutput
+import FileManager
+import NcxParser
+import Unzip
+import XhtmlParser
 
 convertDirectory:: FilePath -> IO ()
 convertDirectory dir = do
   let outputDir = getOutputDir dir
   files <- findXhtmlFiles dir
-  mapM_ (convertFile dir outputDir) files
+  mapM_ (convertFile xhtmlToMarkdown dir outputDir) files
+
+convertTableOfContents:: FilePath -> IO()
+convertTableOfContents dir = do
+  let outputDir = getOutputDir dir
+  maybeTOC <- findTableOfContents dir
+  mapM_ (convertFile tableOfContentsToMarkdown dir outputDir) maybeTOC
 
 getEpubFilesDirectory :: FilePath -> IO (Bool, Either Int FilePath)
 getEpubFilesDirectory path = do
@@ -32,6 +33,7 @@ handleEpubDirectory :: Bool -> Either Int FilePath -> IO ()
 handleEpubDirectory _ (Left errorCode) = error $ "Unzip command returned error code " ++ show errorCode
 handleEpubDirectory shouldCleanUp (Right dir) = do
   convertDirectory dir
+  convertTableOfContents dir
   when shouldCleanUp (cleanup dir)
 
 main :: IO ()
