@@ -70,8 +70,6 @@ findXhtmlFiles = find honorMaxRecursionLimit isXhtml
 findTableOfContents :: FilePath -> IO (Maybe FilePath)
 findTableOfContents rootDir = do
     searchResults <- find honorMaxRecursionLimit isTableOfContents rootDir
-    putStrLn "findTOC"
-    print $ head searchResults
     if null searchResults then return Nothing
     else return $ Just (head searchResults)
 
