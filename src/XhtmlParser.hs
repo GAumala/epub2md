@@ -39,6 +39,7 @@ processTag tagName _ innerTags
   | tagName == "strong" = T.concat ["**", markdownContent, "**"]
   | tagName == "em" = T.concat ["*", markdownContent, "*"]
   | tagName == "i" = T.concat ["*", markdownContent, "*"]
+  | tagName == "code" = T.concat ["`", markdownContent, "`"]
   | tagName == "h1" = T.concat ["# ", markdownContent, "\n\n"]
   | tagName == "h2" = T.concat ["## ", markdownContent, "\n\n"]
   | tagName == "h3" = T.concat ["### ", markdownContent, "\n\n"]
@@ -53,6 +54,7 @@ processTag tagName _ innerTags
     isEmpty = T.null . T.strip
 
 cleanText :: T.Text -> T.Text
+cleanText " " = " "
 cleanText text =  if T.null trimmed then T.empty else text
   where trimmed = T.strip text
 

@@ -31,6 +31,14 @@ tagsToMarkdownTest = TestCase (
     "This paragraph contains **bold**.\n\n"
     (tagsToMarkdown [TagOpen "p" [], TagText "This paragraph contains ", TagOpen "strong" [], TagText "bold", TagClose "strong", TagText ".", TagClose "p"])
     >>
+  assertEqual "Converts a paragraph with code to markdown"
+    "This paragraph contains `code`.\n\n"
+    (tagsToMarkdown [TagOpen "p" [], TagText "This paragraph contains ", TagOpen "code" [], TagText "code", TagClose "code", TagText ".", TagClose "p"])
+    >>
+  assertEqual "Allows single space between inline tags"
+    "This paragraph contains `code` and *italics* **bold**.\n\n"
+    (tagsToMarkdown [TagOpen "p" [], TagText "This paragraph contains ", TagOpen "code" [], TagText "code", TagClose "code", TagText " and ", TagOpen "em" [], TagText "italics", TagClose "em", TagText " ", TagOpen "strong" [], TagText "bold", TagClose "strong", TagText ".", TagClose "p"])
+    >>
   assertEqual "Converts a header and a list"
     "# Title\n\n- item 1\n- item 2\n\n"
     (tagsToMarkdown [TagOpen "h1" [], TagText "Title", TagClose "h1", TagOpen "ul" [], TagOpen "li" [], TagText "item 1", TagClose "li", TagOpen "li" [], TagText "item 2", TagClose "li", TagClose "ul"])

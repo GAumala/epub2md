@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/GAumala/epub2md.svg?branch=master)](https://travis-ci.org/GAumala/epub2md)
 
-Haskell program that converts `.epub` files to Markdown from your terminal. 
+Haskell program that converts `.epub` files to Markdown from your terminal.
 
 ## How it works
 
@@ -15,12 +15,13 @@ This program unzips the `.epub` file, then goes through each `.xhtml` file and c
 - `em`
 - `i`
 - `strong`
+- `code`
 
-Anything else is either completely ignored (such as images), or only the inner text makes it to the markdown file. However, these tags should be enough for most novels stuff like that. PR's are welcome. 
+Anything else is either completely ignored (such as images), or only the inner text makes it to the markdown file. However, these tags should be enough for most novels stuff like that. PR's are welcome.
 
 Aditionally, a `toc.md` file is created, which contains a markdown list as a table of contents.
 
-## Dependencies 
+## Dependencies
 
 [`unzip`](http://www.info-zip.org/UnZip.html) is required to extract the `.xhtml` files.  
 
@@ -46,7 +47,3 @@ epub2md mybook.epub
 After running that, you should have an `mybook-md` directory with a bunch of markdown files.
 
 [![asciicast](https://asciinema.org/a/81ckjse0r5k0inx1m02pngl32.png)](https://asciinema.org/a/81ckjse0r5k0inx1m02pngl32)
-
-
-
-
