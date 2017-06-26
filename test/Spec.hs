@@ -10,6 +10,7 @@ main = runTestTT $ TestList [
     TestLabel "parseBookHtmlContent" parseBookHtmlContentTest,
     TestLabel "parseTOCHtmlContent" parseTOCHtmlContentTest,
     TestLabel "tagsToMarkdown" tagsToMarkdownTest,
+    TestLabel "getInnerXhtml" getInnerXhtmlTest,
     TestLabel "xhtmlToMarkdown" xhtmlToMarkdownTest,
     TestLabel "ncxToMarkdownTest" ncxToMarkdownTest,
     TestLabel "getOutputDir" getOutputDirTest,

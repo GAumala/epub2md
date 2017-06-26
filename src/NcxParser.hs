@@ -10,6 +10,7 @@ import Data.List
 import Text.HTML.TagSoup
 
 import FileManager
+import ParserCommons
 
 isInterestingTag :: Tag T.Text -> Bool
 isInterestingTag (TagOpen "navMap" _) = False
@@ -33,10 +34,6 @@ getPageUrlFromAttrs [] = T.empty
 getPageUrlFromAttrs(("src", url):xs) = urlWithMDExtension
   where urlWithMDExtension = T.pack $ setMDExtension $ T.unpack url
 getPageUrlFromAttrs (x:xs) = getPageUrlFromAttrs xs
-
-spacesForLevel:: Int -> T.Text
-spacesForLevel 0 = T.empty
-spacesForLevel level = T.concat $ replicate (level * 2) " "
 
 tagsToMarkdown :: Int -> [Tag T.Text] -> T.Text
 tagsToMarkdown _ [] = T.empty

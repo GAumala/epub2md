@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module XhtmlParserTests (
+    getInnerXhtmlTest,
     parseBookHtmlContentTest,
     tagsToMarkdownTest
 ) where
@@ -42,4 +43,10 @@ tagsToMarkdownTest = TestCase (
   assertEqual "Converts a header and a list"
     "# Title\n\n- item 1\n- item 2\n\n"
     (tagsToMarkdown [TagOpen "h1" [], TagText "Title", TagClose "h1", TagOpen "ul" [], TagOpen "li" [], TagText "item 1", TagClose "li", TagOpen "li" [], TagText "item 2", TagClose "li", TagClose "ul"])
+  )
+
+getInnerXhtmlTest = TestCase (
+  assertEqual "Gets the inner xhtml in a nested list"
+  ([TagOpen "li" [], TagText "1", TagClose "li", TagOpen "li" [], TagOpen "ul" [], TagOpen "li" [], TagText "nested item", TagClose "li", TagClose "ul", TagClose "li", TagOpen "li" [], TagText "2", TagClose "li"], [TagOpen "p" []])
+  (getInnerXhtml "ul" [TagOpen "li" [], TagText "1", TagClose "li", TagOpen "li" [], TagOpen "ul" [], TagOpen "li" [], TagText "nested item", TagClose "li", TagClose "ul", TagClose "li", TagOpen "li" [], TagText "2", TagClose "li", TagClose "ul", TagOpen "p" []])
   )
